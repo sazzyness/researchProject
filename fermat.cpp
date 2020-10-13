@@ -3,7 +3,12 @@
 
 using namespace std;
 
+bool debug = true;
+
 void Y_LOOP(mpz_t& a, mpz_t& b, mpz_t& cont){
+    if (debug) {
+        cout<<"\nEntered Y_LOOP";
+    }
     while (mpz_sgn(a) == 1){
         mpz_sub(a, a, b);
         mpz_add(b, b, cont);
@@ -23,6 +28,14 @@ int main () {
     if (mpz_sgn(ciel) != 0){
         mpz_add(sqrt, sqrt, incr);
     }
+    if (debug) {
+        if (mpz_cmp(sqrt, n) == 0){
+        cout<<"\nSquare root not found! :(";
+        } else if (mpz_cmp(sqrt, n) < 0){
+            cout<<"\nSquare root found";
+            mpz_out_str(stdout, 10, sqrt);
+        }
+    }
 
     mpz_set(u, incr);
     mpz_addmul(u, sqrt, incr2);
@@ -33,8 +46,30 @@ int main () {
     mpz_sub(r, r, n);
 
     while (mpz_sgn(r) != 0){            //X_LOOP
+        if (debug) {
+        cout<<"\nEntered X_LOOP";
+    }
+        
         if (mpz_sgn(r) == 1){
+            mpz_t r1, v1;
+            mpz_init_set(r1, r);
+            mpz_init_set(v1, v);
+            
             Y_LOOP(r, v, incr2);
+            
+            if (debug) {
+                if (mpz_cmp(r1, r) == 0){
+                    cout<<"\nr value unchanged :(";
+                } else if (mpz_cpm(r1, r) != 0){
+                    cout<<"\nr value changed :)";
+                } else if (mpz_cmp(v1, v) == 0){
+                    cout<<"\nv value unchanged :(";
+                } else if (mpz_cmp(v1, v) != 0){
+                    cout<<"\nv value changed :)";
+                }
+            }
+        
+    }
         } else if (mpz_sgn(r) == -1){
             mpz_add(r, r, u);
             mpz_add(u, u, incr2);
@@ -44,6 +79,10 @@ int main () {
     mpz_t a, b;                         //finalising
     mpz_init_set(a, u);
     mpz_init_set(b, u);
+    
+    if (debug) {
+        cout<<"\nCalculating final values";
+    }
 
     mpz_add(a, a, v);
     mpz_sub(a, a, incr2);
