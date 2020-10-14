@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool debug = true;
+bool debug = false;
 
 void Y_LOOP(mpz_t& a, mpz_t& b, mpz_t& cont){
     if (debug) {
@@ -30,7 +30,7 @@ int main () {
     }
     if (debug) {
         if (mpz_cmp(sqrt, n) == 0){
-        cout<<"\nSquare root not found! :(";
+            cout<<"\nSquare root not found! :(";
         } else if (mpz_cmp(sqrt, n) < 0){
             cout<<"\nSquare root found";
             mpz_out_str(stdout, 10, sqrt);
@@ -47,20 +47,20 @@ int main () {
 
     while (mpz_sgn(r) != 0){            //X_LOOP
         if (debug) {
-        cout<<"\nEntered X_LOOP";
-    }
-        
+            cout<<"\nEntered X_LOOP";
+        }
+
         if (mpz_sgn(r) == 1){
             mpz_t r1, v1;
             mpz_init_set(r1, r);
             mpz_init_set(v1, v);
-            
+
             Y_LOOP(r, v, incr2);
-            
+
             if (debug) {
                 if (mpz_cmp(r1, r) == 0){
                     cout<<"\nr value unchanged :(";
-                } else if (mpz_cpm(r1, r) != 0){
+                } else if (mpz_cmp(r1, r) != 0){
                     cout<<"\nr value changed :)";
                 } else if (mpz_cmp(v1, v) == 0){
                     cout<<"\nv value unchanged :(";
@@ -68,38 +68,37 @@ int main () {
                     cout<<"\nv value changed :)";
                 }
             }
-        
+
+        }else if (mpz_sgn(r) == -1){
+        mpz_add(r, r, u);
+        mpz_add(u, u, incr2);
     }
-        } else if (mpz_sgn(r) == -1){
-            mpz_add(r, r, u);
-            mpz_add(u, u, incr2);
-        }
-    }
+}
 
-    mpz_t a, b;                         //finalising
-    mpz_init_set(a, u);
-    mpz_init_set(b, u);
-    
-    if (debug) {
-        cout<<"\nCalculating final values";
-    }
+mpz_t a, b;                         //finalising
+mpz_init_set(a, u);
+mpz_init_set(b, u);
 
-    mpz_add(a, a, v);
-    mpz_sub(a, a, incr2);
-    mpz_fdiv_q(a, a, incr2);
+if (debug) {
+cout<<"\nCalculating final values";
+}
 
-    mpz_sub(b, b, v);
-    mpz_fdiv_q(b, b, incr2);
+mpz_add(a, a, v);
+mpz_sub(a, a, incr2);
+mpz_fdiv_q(a, a, incr2);
 
-    cout<<"\nA factor is:";
-    mpz_out_str(stdout, 10, a); //Stream, numerical base, var
-    cout<<endl;
+mpz_sub(b, b, v);
+mpz_fdiv_q(b, b, incr2);
 
-    cout<<"Another factor is:";
-    mpz_out_str(stdout, 10, b);
-    cout<<endl;
+cout<<"\nA factor is:";
+mpz_out_str(stdout, 10, a); //Stream, numerical base, var
+cout<<endl;
 
-    //cin.get();
+cout<<"Another factor is:";
+mpz_out_str(stdout, 10, b);
+cout<<endl;
 
-    return 0;
+//cin.get();
+
+return 0;
 }
