@@ -4,7 +4,7 @@ project(researchProject)
 set(CMAKE_CXX_STANDARD 17)
  set(CMAKE_CXX_FLAGS "-lgmpxx")
 
-add_executable(researchProject gcd.cpp fermat.cpp pollardRho.cpp)
+add_executable(researchProject gcd.cpp fermat.cpp pollardRho.cpp pollardP.cpp)
 
  include_directories(researchProject "/usr/include")
  target_link_libraries(researchProject gmp gmpxx )
