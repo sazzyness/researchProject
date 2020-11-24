@@ -54,16 +54,18 @@ void divide(mpz_t n, mpz_t max){
 
     //output
     for(int r = 1; r<=i; r++){
-        cout << p[i] << "^" << e[i] << " * ";
+            mpz_out_str(stdout, 10, p[r]);
+            cout << "^" << e[r] << " * ";
     }
+    cout << 1;
 }
 
 int main(){
     mpz_t n, max;
     mpz_inits(n, max, NULL);
 
-    mpz_set_str(n, "100", 10);
-    mpz_set_str(max, "10", 10);
+    mpz_set_str(n, "36428431", 10);
+    mpz_set_str(max, "1000", 10);
 
     cout << "The factors of ";
     mpz_out_str(stdout, 10, n);
