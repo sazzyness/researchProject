@@ -27,9 +27,12 @@ void reset(mpz_t& x1, mpz_t& x2, int& range, mpz_t& n, mpz_t& c){
 int main () {
     mpz_t n, c, max, x1, x2, product, terms, incr, temp, base;
 
+   // Edit the following line to add your number to be factorised
     mpz_init_set_str(n, "1438671211", 10);
     mpz_init_set_str(incr, "1", 10);
-    mpz_init_set(c, incr);
+    // Edit the following line to change the value of c
+    mpz_init_set_ui(c, 1);
+    // Edit the following line to change the maximum number of cycles
     mpz_init_set_str(max, "1000", 10);
     mpz_init_set_str(x1, "2", 10);
     mpz_init_set_str(x2, "4", 10);
