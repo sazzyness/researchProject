@@ -20,8 +20,11 @@ void checkGCD(mpz_t& n, mpz_t& m){
 int main () {
     mpz_t n, c, m;
 
+    // Edit the following line to add your number to be factorised
     mpz_init_set_str(n, "1438671211", 10);
+    // Edit the following line to change the value of the base
     mpz_init_set_str(c, "5", 10);
+    // Edit the following line to change the value of the maximum cycles
     int max = 1000;
 
     mpz_init_set(m, c);
