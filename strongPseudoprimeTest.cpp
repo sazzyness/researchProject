@@ -6,7 +6,9 @@ using namespace std;
 int main(){
     mpz_t n, b, t, test, temp;
 
+    // Edit the following line to set the number you want to test
     mpz_init_set_str(n, "2047", 10);
+    // Edit the following line to change the base
     mpz_init_set_str(b, "2", 10);
 
     mpz_inits(test, temp);
