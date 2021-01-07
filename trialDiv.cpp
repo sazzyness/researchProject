@@ -64,7 +64,9 @@ int main(){
     mpz_t n, max;
     mpz_inits(n, max, NULL);
 
+   // Edit the following line to set the number you want to factorise
     mpz_set_str(n, "36428431", 10);
+    // Edit the following line to set the maximum number it divides up to
     mpz_set_str(max, "1000", 10);
 
     cout << "The factors of ";
